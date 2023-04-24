@@ -1,14 +1,39 @@
+<div class="row my-4">
+    <div class="col">
+        <button (click)="deleteAll()" type="button" class="btn btn-primary">Összes Törlése</button> 
+    </div>
+</div>
+
+
 <div class="row my-3">
     <div *ngFor="let oszlop of oszlopok" class="col">{{oszlop}}</div>
     <div  class="col">Műveletek</div>
 </div>
 
-<div class="row">
+<div class="row mb-3">
     <div *ngFor="let oszlop of oszlopok" class="col">
         <input *ngIf="oszlop!='key';else isPlain " type="text" class="form-control" [(ngModel)]="ujAllat[oszlop]">
-        <ng-template #isPlain>Kulcs</ng-template>
+        <ng-template #isPlain></ng-template>
     </div>
     <div  class="col">
         <button (click)="newAnimal(ujAllat)" type="button" class="btn btn-primary">Hozzáad</button> 
+    </div>
+</div>
+
+
+<div *ngFor="let allat of allatok" class="row mb-2">
+    <div *ngFor="let oszlop of oszlopok" class="col">
+        <input *ngIf="oszlop!='key';else isPlain " type="text" class="form-control" [(ngModel)]="allat[oszlop]">
+        <ng-template #isPlain>{{allat.key}}</ng-template>
+    </div>
+    <div  class="col">
+        <div class="row text-center">
+            <div class="col">
+                <button (click)="update(allat)" type="button" class="btn btn-primary">Szerkesztés</button> 
+            </div>
+            <div class="col">
+                <button (click)="delete(allat)" type="button" class="btn btn-primary">Törlés</button> 
+            </div>
+        </div>       
     </div>
 </div>
